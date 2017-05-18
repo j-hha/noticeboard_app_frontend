@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html ng-app="noticeboard">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+    <script type="text/javascript" src=app.js></script>
+  </head>
+  <body ng-controller='mainController as ctrl'>
+    <header>
+      NOTICE APP
+    </header>
+    <div class="container">
+      <main>
+        <div class="notice" ng-repeat="notice in ctrl.notices">
+          <h3>{{notice.title}}</h3>
+          <small>by {{notice.author}}</small>
+          <p>{{notice.content}}</p>
+        </div>
+      </main>
+      <nav>
+        <h4>POST A NOTICE</h4>
+        <form ng-submit="ctrl.processForm()">
+          <input type="text" placeholder="author" ng-model="ctrl.formdata.author">
+          <input type="text" placeholder="title" ng-model="ctrl.formdata.title">
+          <input type="text" placeholder="content" ng-model="ctrl.formdata.content">
+          <input type="submit" class="submit">
+        </form>
+      </nav>
+      <aside>
+        <form ng-submit="ctrl.createAccount()">
+          <legend>Create Account</legend>
+          <input type="text" ng-model='ctrl.createAccount.username'>
+          <input type="password" ng-model='ctrl.createAccount.password'>
+          <input type="submit" class="submit">
+        </form>
+        <hr>
+        <form ng-submit="ctrl.login()">
+          <legend>LOG IN</legend>
+          <input type="text" ng-model='ctrl.login.username'>
+          <input type="password" ng-model='ctrl.login.password'>
+          <input type="submit" class="submit">
+        </form>
+        <button ng-click="ctrl.getCurrentUser()">Who is logged in?</button>
+        <button ng-click="ctrl.logout()">LOG OUT</button>
+      </aside>
+    </div>
+    <footer>
+      ...
+    </footer>
+  </body>
+</html>
